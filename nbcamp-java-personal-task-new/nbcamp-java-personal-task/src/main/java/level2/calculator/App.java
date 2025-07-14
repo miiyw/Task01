@@ -59,6 +59,13 @@ public class App {
                 System.out.println("리스트가 초기화되었습니다." + calc.getResultList() + "\n");
             }
 
+            // 가장 먼저 저장된 데이터 삭제 메서드
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String input_remove = sc.next();
+            if (input_remove.trim().equals("remove")) {
+                calc.removeResult();
+            }
+
             // 반복 여부 확인
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String input = sc.next();
