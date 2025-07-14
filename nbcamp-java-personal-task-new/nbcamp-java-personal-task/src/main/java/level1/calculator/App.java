@@ -87,12 +87,24 @@ public class App {
                 }
             }
 
+            // 저장된 연산 결과 전부 출력
+            System.out.println("저장된 연산 결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
+            String input_result = sc.next();
+            if (input_result.trim().equals("inquiry")) {
+                System.out.print("저장된 연산 결과: ");
+                for (int number : resultList) { // 향상된 for문 사용하여 연산 결과 출력
+                    System.out.print(number + " ");
+                }
+                System.out.println();
+            }
+
             // 반복 여부 확인
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             String input = sc.next();
             if (input.trim().equals("exit")) { // 입력값이 "exit"면 반복 종료
                 break;
             }
+            System.out.println();
         }
         // 저장된 결과 출력
         System.out.print("리스트 저장 결과: ");
