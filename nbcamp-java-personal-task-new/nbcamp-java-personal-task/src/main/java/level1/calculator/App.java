@@ -67,12 +67,15 @@ public class App {
             System.out.println("결과: " + result);
 
             // 결과 저장
-            if (index >= arr.length) { // 배열 초과 시
-                System.out.println("결과 저장 공간이 전부 찼습니다."); // 해당 안내문 출력
-            }
-            else {
+            if (index < arr.length) { // 배열에 저장된 값이 10개 미만이면
                 arr[index] = result; // 연산의 결과를 배열에 저장
                 index++; // index 증가하여 다음 index에 값이 저장될 수 있도록 함
+            } else { // 10개 초과일 경우
+                // 가장 앞 요소 제거, 한 칸씩 앞으로 밀기
+                for (int i = 0; i < arr.length - 1; i++) {
+                    arr[i] = arr[i + 1];
+                }
+                arr[arr.length - 1] = result; // 마지막에 가장 최근의 결과 저장
             }
 
             // 반복 여부 확인
@@ -84,7 +87,8 @@ public class App {
         }
         // 저장된 배열 출력
         System.out.print("배열 저장 결과: ");
-        for (int i = 0; i < index; i++) {
+        int count = Math.min(index, arr.length); // 저장된 결과 최대 10개
+        for (int i = 0; i < count; i++) { // 저장된 값만큼 유요한 값만 출력
             System.out.print(arr[i] + " " + "\n");
         }
     }
