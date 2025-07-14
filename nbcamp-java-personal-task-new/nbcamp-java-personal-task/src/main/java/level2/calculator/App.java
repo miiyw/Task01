@@ -43,9 +43,20 @@ public class App {
 
                 int result = calc.calculate(num1, num2, operator);
                 System.out.println("결과: " + result + "\n");
+
+                // Getter 메서드 활용 - 연산 저장 결과 확인
+                System.out.println("연산 저장 결과: " + calc.getResultList() + "\n");
             } catch (DivideByZeroException | InvalidOperatorException e) { // 콘솔에 예외 처리 메시지 출력할 수 있도록 처리
                 System.out.println("! 예외 발생: " + e.getMessage() + "\n");
                 continue; // 예외 발생 시 처음으로 다시 입력받기
+            }
+
+            // Setter 활용 - 리스트 초기화 여부 확인
+            System.out.println("연산 결과가 저장된 리스트를 초기화하시겠습니까? (reset 입력 시 초기화)");
+            String input_reset = sc.next();
+            if (input_reset.trim().equals("reset")) {
+                calc.setResultList(new  ArrayList<>());
+                System.out.println("리스트가 초기화되었습니다." + calc.getResultList() + "\n");
             }
 
             // 반복 여부 확인

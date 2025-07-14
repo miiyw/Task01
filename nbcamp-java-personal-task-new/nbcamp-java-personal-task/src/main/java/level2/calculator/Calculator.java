@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 리스트 생성
+    private List<Integer> resultList = new ArrayList<>(); // 연산 결과를 저장하는 리스트 생성
+
+    // Getter 메서드 구현
+    public List<Integer> getResultList() {
+        return new ArrayList<>(resultList); // 복사본을 반환하여 캡슐화 유지
+    }
+
+    // Setter 메서드 구현
+    public void setResultList(List<Integer> newResultList) {
+        this.resultList = new ArrayList<>(newResultList); // 리스트 복사본으로 안전한 수정이 가능하게 함
+    }
 
     public int calculate(int num1, int num2, char operator) throws DivideByZeroException, InvalidOperatorException {
         int result; // 결과 저장용 변수 선언
