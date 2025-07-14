@@ -1,13 +1,14 @@
 package level1.calculator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        int[] arr = new int[10]; // 연산의 결과를 저장할 배열 생성
-        int index = 0; // 연산의 결과가 저장된 배열의 마지막 index를 저장하는 변수 선언
+        List<Integer> resultList = new ArrayList<>(); // 연산 결과가 무한으로 저장될 수 있는 리스트 생성
 
         while(true) {
             int num1;
@@ -40,7 +41,7 @@ public class App {
             char operator = sc.next().charAt(0); // 사칙 연산 기호를 적합한 타입으로 선언한 변수에 저장
             // charAt(0): 문자열의 0번째 위치에 있는 문자(첫 글자) 반환
 
-            int result = 0; // 결과 저장용 변수 초기화
+            int result; // 결과 저장용 변수 초기화
             // 입력된 연산 기호에 따라 연산 수행
             switch (operator) {
                 case '+': // 덧셈 연산
@@ -67,15 +68,23 @@ public class App {
             System.out.println("결과: " + result);
 
             // 결과 저장
-            if (index < arr.length) { // 배열에 저장된 값이 10개 미만이면
-                arr[index] = result; // 연산의 결과를 배열에 저장
-                index++; // index 증가하여 다음 index에 값이 저장될 수 있도록 함
-            } else { // 10개 초과일 경우
-                // 가장 앞 요소 제거, 한 칸씩 앞으로 밀기
-                for (int i = 0; i < arr.length - 1; i++) {
-                    arr[i] = arr[i + 1];
+            resultList.add(result);
+
+            // 저장된 결과 출력
+            System.out.print("\n저장된 연산 결과 목록: ");
+            System.out.println(resultList + "\n");
+
+            // 연산 결과 삭제 여부 확인
+            System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
+            String input_remove = sc.next();
+            if (input_remove.trim().equals("remove")) { // 입력값이 "remove"면 가장 먼저 저장된 연산 결과 삭제
+                if (!resultList.isEmpty()) {
+                    resultList.remove(0);
+                    System.out.println("삭제 후 현재 저장된 결과: " + resultList);
                 }
-                arr[arr.length - 1] = result; // 마지막에 가장 최근의 결과 저장
+                else { // 만약 리스트에 연산 결과가 없다면
+                    System.out.println("리스트가 비어 있습니다."); // 안내문 출력
+                }
             }
 
             // 반복 여부 확인
@@ -85,11 +94,8 @@ public class App {
                 break;
             }
         }
-        // 저장된 배열 출력
-        System.out.print("배열 저장 결과: ");
-        int count = Math.min(index, arr.length); // 저장된 결과 최대 10개
-        for (int i = 0; i < count; i++) { // 저장된 값만큼 유요한 값만 출력
-            System.out.print(arr[i] + " " + "\n");
-        }
+        // 저장된 결과 출력
+        System.out.print("리스트 저장 결과: ");
+        System.out.println(resultList);
     }
 }
