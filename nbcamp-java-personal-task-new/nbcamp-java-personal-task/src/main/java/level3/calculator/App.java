@@ -36,10 +36,15 @@ public class App {
                     System.out.println("결과: " + result + "\n");
 
                     // Getter 메서드 활용 - 연산 저장 결과 확인
-                    System.out.println("연산 저장 결과: " + ac.getResultList() + "\n");
+                    List getter_list = ac.getResultList();  // getter로 연산 결과 리스트를 가져옵니다.
+                    System.out.print("저장된 연산 결과: ");
+                    for (Object value : getter_list) {
+                        System.out.printf("%.2f / ", ((Number) value).doubleValue());  // 소수 둘째 자리까지 출력
+                    }
+                    System.out.println();  // 출력 후 줄 바꿈
 
                     // Setter 활용 - 리스트 초기화 여부 확인
-                    System.out.println("연산 결과가 저장된 리스트를 초기화하시겠습니까? (reset 입력 시 초기화)");
+                    System.out.println("\n연산 결과가 저장된 리스트를 초기화하시겠습니까? (reset 입력 시 초기화)");
                     String input_reset = sc.next();
                     if (input_reset.trim().equals("reset")) {
                         ac.setResultList(new  ArrayList<>());
@@ -59,6 +64,14 @@ public class App {
                     if (input_result.trim().equals("inquiry")) {
                         ac.inquiryResults();
                     }
+
+                    // 입력받은 값보다 큰 값을 출력
+                    System.out.println("기준값보다 큰 값을 출력하시겠습니까? (ref 입력 시 출력)");
+                    String input_ref = sc.next();
+                    if (input_ref.trim().equals("ref")) {
+                        ac.printGreater();
+                    }
+                    System.out.println();
 
                     // 반복 여부 확인
                     System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
@@ -82,6 +95,14 @@ public class App {
 
                         cc.inquiryResults();
                     }
+
+                    // 입력받은 값보다 큰 값을 출력
+                    System.out.println("기준값보다 큰 값을 출력하시겠습니까? (ref 입력 시 출력)");
+                    String input_ref = sc.next();
+                    if (input_ref.trim().equals("ref")) {
+                        ac.printGreater();
+                    }
+                    System.out.println();
 
                     // 반복 여부 확인
                     System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");

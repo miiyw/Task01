@@ -81,4 +81,17 @@ public class ArithmeticCalculator<T extends Number> extends Calculator<T> {
         }
         return null; // 잘못된 연산 기호가 입력되었을 때
     }
+
+    // 입력받은 값보다 큰 결괏값을 출력하는 메서드
+    public void printGreater() {
+        System.out.println("값을 출력할 때 기준이 되는 값을 입력하세요: ");
+        double ref = sc.nextDouble();
+
+        System.out.print("> ");
+        // stream을 사용하여 결과 리스트에서 기준 값보다 큰 값들만 필터링하고 출력
+        resultList.stream()
+                .filter(result -> result.doubleValue() > ref)
+                .forEach(result -> System.out.printf("%.2f ", result.doubleValue()));
+        System.out.println();
+    }
 }

@@ -2,7 +2,7 @@ package level3.calculator;
 
 import java.util.*;
 
-public abstract class Calculator<T> {
+public abstract class Calculator<T extends Number> {
     protected List<T> resultList; // 연산 결과와 원의 넓이를 저장하는 리스트
 
     // 연산을 수행하는 추상 메서드
@@ -29,8 +29,9 @@ public abstract class Calculator<T> {
     public void inquiryResults() {
         System.out.print("저장된 연산 결과: ");
         for (T number : resultList) {
-            System.out.print(number + " / ");
+            System.out.printf("%.2f / ", number.doubleValue());  // 소수 둘째 자리까지 출력
         }
+        System.out.println();
         System.out.println();
     }
 }
