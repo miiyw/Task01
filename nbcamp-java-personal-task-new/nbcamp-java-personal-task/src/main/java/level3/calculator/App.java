@@ -3,7 +3,7 @@ package level3.calculator;
 import java.util.*;
 
 public class App {
-    public static void main(String[] args) {
+    public static <T> void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         ArithmeticCalculator ac = new ArithmeticCalculator(); // 사칙 연산 객체
@@ -32,7 +32,7 @@ public class App {
                         System.out.println("음수는 입력할 수 없습니다.");
                     }
 
-                    double result = ac.calculate(num1, num2);
+                    T result = (T) ac.calculate(num1, num2);
                     System.out.println("결과: " + result + "\n");
 
                     // Getter 메서드 활용 - 연산 저장 결과 확인
@@ -77,7 +77,7 @@ public class App {
                         continue; // 반복문으로 돌아가 다시 입력받기
                     }
                     else { // 원의 넓이 계산
-                        double result = cc.calculate(radius);
+                        T result = (T) cc.calculate(radius);
                         System.out.printf("원의 넓이: %.2f\n", result); // 소수점 둘째 자리까지 표기
 
                         cc.inquiryResults();

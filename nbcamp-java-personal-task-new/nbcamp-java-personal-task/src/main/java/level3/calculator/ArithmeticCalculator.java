@@ -2,7 +2,7 @@ package level3.calculator;
 
 import java.util.*;
 
-public class ArithmeticCalculator extends Calculator {
+public class ArithmeticCalculator<T extends Number> extends Calculator<T> {
     Scanner sc = new Scanner(System.in);
 
     // 연산자 문자와 연산자 객체를 매핑하는 맵
@@ -21,14 +21,14 @@ public class ArithmeticCalculator extends Calculator {
 
     // 사칙 연산 계산기
     @Override
-    public double calculate(double... numbers) {
+    public T calculate(T... numbers) {
         // 가변 인자
         if (numbers.length != 2) { // 입력된 값이 2개가 아니라면
             throw new IllegalArgumentException("두 개의 숫자를 입력해야 합니다."); // 오류 출력
         }
 
-        double num1 = numbers[0];
-        double num2 = numbers[1];
+        T num1 = numbers[0];
+        T num2 = numbers[1];
 
         System.out.print("사칙 연산 기호를 입력하세요: ");
         char operator = sc.next().charAt(0);
@@ -45,19 +45,19 @@ public class ArithmeticCalculator extends Calculator {
         OperatorType operatorType = getOperatorType(operator);
         if (operatorType == null) { // 잘못된 연산 기호를 입력했을 때의 처리
             System.out.println("잘못된 연산 기호입니다.");
-            return 0;
+            return null;
         }
 
         // 연산자에 해당하는 Operator 객체를 가져옴
         Operator op =  operatorMap.get(operatorType);
 
         try {
-            double result = op.operate(num1, num2); // 연산 수행
+            T result = (T) op.operate(num1, num2); // 연산 수행
             resultList.add(result); // 결과 저장
             return result; // 결괏값 반환
         } catch (DivideByZeroException e) { // 나눗셈과 나머지 연산에서 0으로 나누었을 때 예외 처리
             System.out.println("! 예외 발생: " + e.getMessage() + "\n");
-            return 0; // 기본값 반환
+            return null;
         }
     }
 

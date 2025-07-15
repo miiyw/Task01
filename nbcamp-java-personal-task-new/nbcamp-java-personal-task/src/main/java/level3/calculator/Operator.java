@@ -1,5 +1,5 @@
 package level3.calculator;
 
-public interface Operator {
-    double operate(double num1, double num2) throws DivideByZeroException;
+public interface Operator<T> {
+    T operate(T num1, T num2) throws DivideByZeroException;
 }
